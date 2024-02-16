@@ -6,7 +6,7 @@
 **추상 + 공장 패턴 :** 추상적인 공장에서 추상적인 부품을 조합하여 추상적인 제품을 만든다. 부품의 구체적인 구현에 집중하지 않고 인터페이스에 주목, 인터페이스만 사용하여 부품을 조립하고 제품으로 완성한다.
 
 다음 표를 보면 추상 팩토리가 어떤 구조로 이루어졌는지 확인할 수 있다.
-<p align="center"><img src="./AbstractFactory/images/diagram.png"/></p>
+<p align="center"><img src="./images/diagram.png"/></p>
 
 -   **Abstract Factory :** 최상위 공장, 메서드들을 추상화한다. AbstractProduct의 인스턴스를 만들기 위한 인터페이스를 결정한다.
 -   **Concrete Factory :** 서브 공장 클래스, 유형에 맞는 객체를 반환하도록 메서드들을 재정의한다. AbstractFactory의 인터페이스를 구현한다.
