@@ -16,7 +16,11 @@ build/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-
+*.class
+*.gradle
+*.jar
+*.bat
+gradlew
 ### IntelliJ IDEA ###
 .idea
 *.iws
