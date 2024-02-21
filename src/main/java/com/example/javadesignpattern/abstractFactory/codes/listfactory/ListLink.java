@@ -1,6 +1,6 @@
-package com.example.javadesignpattern.AbstractFactory.codes.listfactory;
+package com.example.javadesignpattern.abstractFactory.codes.listfactory;
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Link;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Link;
 
 public class ListLink extends Link {
     public ListLink(String caption, String url) {

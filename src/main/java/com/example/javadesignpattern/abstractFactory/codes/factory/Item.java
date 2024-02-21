@@ -1,4 +1,4 @@
-package com.example.javadesignpattern.AbstractFactory.codes.factory;
+package com.example.javadesignpattern.abstractFactory.codes.factory;
 
 public abstract class Item {
     protected String caption;

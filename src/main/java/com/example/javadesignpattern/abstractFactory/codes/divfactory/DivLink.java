@@ -1,7 +1,7 @@
-package com.example.javadesignpattern.AbstractFactory.codes.divfactory;
+package com.example.javadesignpattern.abstractFactory.codes.divfactory;
 
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Link;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Link;
 
 public class DivLink extends Link {
     public DivLink(String caption, String url) {

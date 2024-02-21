@@ -1,8 +1,8 @@
-package com.example.javadesignpattern.AbstractFactory.codes.listfactory;
+package com.example.javadesignpattern.abstractFactory.codes.listfactory;
 
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Item;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Tray;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Item;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Tray;
 
 public class ListTray extends Tray {
     public ListTray(String caption) {

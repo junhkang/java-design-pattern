@@ -1,7 +1,7 @@
-package com.example.javadesignpattern.AbstractFactory.codes.divfactory;
+package com.example.javadesignpattern.abstractFactory.codes.divfactory;
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Item;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Page;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Item;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Page;
 
 public class DivPage extends Page {
     public DivPage(String title, String author) {

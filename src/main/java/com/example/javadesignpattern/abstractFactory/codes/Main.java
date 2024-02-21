@@ -1,10 +1,10 @@
-package com.example.javadesignpattern.AbstractFactory.codes;
+package com.example.javadesignpattern.abstractFactory.codes;
 
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Factory;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Link;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Page;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Tray;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Factory;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Link;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Page;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Tray;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.example.javadesignpattern.Composite.codes;
+package com.example.javadesignpattern.composite.codes;
 
 public class Main {
     public static void main(String[] args) {

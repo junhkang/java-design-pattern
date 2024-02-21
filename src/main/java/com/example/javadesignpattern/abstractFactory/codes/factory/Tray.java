@@ -1,4 +1,4 @@
-package com.example.javadesignpattern.AbstractFactory.codes.factory;
+package com.example.javadesignpattern.abstractFactory.codes.factory;
 
 
 import java.util.ArrayList;

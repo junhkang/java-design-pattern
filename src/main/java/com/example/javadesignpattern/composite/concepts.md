@@ -1,181 +1,134 @@
-## 1\. 추상 팩토리(Abstract Factory) 패턴 이란?
+## 1\. 컴포지트(Composite) 패턴이란?
 
-> 추상 - 구체적으로 어떻게 구현되는지 생각하지 않고 인터페이스(API)에만 주목하는 상태  
-> 공장 - 부품을 조립하여 제품 완성
+Composite는 혼합물, 복합물이란 뜻으로 중첩된 구조, 재귀적인 구조를 만드는 패턴이다. 대표적인 예로 윈도우 디렉터리와 파일을 들 수 있다. 디렉터리, 파일은 엄연히 다른 속성이지만 둘 다 디렉터리 안에 넣을 수 있다는 공통점이 있다. 디렉터리 내에는 또 다른 디렉터리가 있을 수 있기에 중첩, 재귀적인 구조를 만들어낸다.
 
-**추상 + 공장 패턴 :** 추상적인 공장에서 추상적인 부품을 조합하여 추상적인 제품을 만든다. 부품의 구체적인 구현에 집중하지 않고 인터페이스에 주목, 인터페이스만 사용하여 부품을 조립하고 제품으로 완성한다.
+디렉터리와 파일을 합쳐 디렉터리 엔트리라고 부르기도 한다. 두 속성을 같은 종류로 간주하는 것이다. 어떤 디렉터리 안에 무엇이 있는지 차례대로 조사할 때 조사하는 것이 디렉터리일 수도, 파일일 수도 있다, 한마디로 디렉터리 엔트리를 차례로 조사한다는 것이다.
 
-다음 표를 보면 추상 팩토리가 어떤 구조로 이루어졌는지 확인할 수 있다.
+이처럼 그릇과 내용물을 동일시하여 재귀적인 구조를 만드는 것이 Composite 패턴이다.
+
+다이어그램을 보면서 자세히 살펴보자
 <p align="center"><img src="./images/diagram.png"/></p>
 
--   **Abstract Factory :** 최상위 공장, 메서드들을 추상화한다. AbstractProduct의 인스턴스를 만들기 위한 인터페이스를 결정한다.
--   **Concrete Factory :** 서브 공장 클래스, 유형에 맞는 객체를 반환하도록 메서드들을 재정의한다. AbstractFactory의 인터페이스를 구현한다.
--   **Abstract Product :** 타입의 제품을 추상화한 인터페이스이다. AbstractFactory에 의해 만들어지는 추상적인 부품이나 제품의 인터페이스(API)를 결정한다.
--   **ConcreteProduct :** 각 유형의 구현체, 팩토리 객체로부터 생성한다. AbstractProduct의 인터페이스를 구현한다.
+-   **Leaf(잎) -** "내용물"로 내부에 다른 것을 넣을 수 없다.
+-   **Composite(복합체)  -** "그릇"으로 Leaf나 또 다른 Composite를 넣을 수 있다.
+-   **Component -** Leaf와 Composite를 동일시하는 역할을 한다. Leaf역과 Composite역에 공통되는 상위 클래스로 구현된다.
+-   **Client -** Composite 패턴의 사용자이다.
+
+다이어그램을 보면 Composite가 포함하는 Component(Leaf 나 Composite)를 부모에 대한 자식으로 간주한다. getChild() 메서드는 Component로부터 자식을 얻는 메서드이다.
 
 ## 2\. 예제
 
-사용할 예제는 계층 구조로 된 링크 페이지를 HTML파일로 바꾸는 코드이다. ("JAVA 언어로 배우는 디자인 패턴 입문 3편"의 예제 활용) HTML 계층 구조를 추상 팩토리 패턴을 통해 구현한 것으로 2개의 패키지로 분리된 클래스군으로 구성되어 있다.
+"JAVA 언어로 배우는 디자인 패턴 입문 3편"의 예제로 Composite 패턴을 구현해 보자. 처음 예시로 든 것처럼 파일/디렉터리/디렉터리 엔트리의 관계를 구현하였다.
 
--   **factory :** 추상적인 공장, 부품, 제품을 포함하는 패키지
--   **listFactory :** 구체적인 공장, 부품, 제품을 포함하는 패키지
+-   **Entry -** File과 Directory를 동일시하는 추상 클래스
+-   **File -** 파일 클래스
+-   **Directory -** 디렉터리 클래스
 
-factory 하위의 추상 공장/부품과 listFactory 하위의 구체적인 부품/공장을 통해 html list를 구현한다.
+### 2-1. Entry 클래스
 
-### 2-1. 추상적인 부품 - Item, Link, Tray
-
-HTML 요소들을 다룰 추상적인 부품들을 정의한다. Link와 Tray를 통일적으로 다루기 위한 Item 클래스를 생성한다. HTML 문자열을 반환하는 makeHTML()은 추상메서드로 선언하여 하위 클래스에서 상황에 맞게 구현할 수 있게 한다.
-
-#### 2-1-1. Item
+이름과 크기를 얻기 위한 getName, getSize 메서드를 정의하고 하위 클래스에 구현을 맡긴다.  오버로딩된 printList(), printList(String) 메서드 중 printList()는 public으로 구현하여 외부에 공개하고 printList(String)은 protected로 Entry 하위 클래스에서만 사용할 수 있도록 하였다. 
 
 ```
-public abstract class Item {
-    protected String caption;
-    public Item(String caption) {
-        this.caption = caption;
+public abstract class Entry {
+    // 이름을 얻는다
+    public abstract String getName();
+    // 크기를 얻는다 
+    public abstract int getSize();
+    // 목록을 표시한다
+    public void printList() {
+        printList("");
     }
-    public abstract String makeHTML();
-}
-```
-
-#### 2-1-2. Link
-
-```
-public abstract class Link extends Item {
-    protected String url;
-
-    public Link(String caption, String url) {
-        super(caption);
-        this.url = url;
+    // prefix를 앞에 붙여서 목록을 표시한다 
+    protected abstract void printList(String prefix);
+    // 문자열 표시 
+    @Override
+    public String toString() {
+        return getName() + " (" + getSize() + ")";
     }
 }
 ```
 
-#### 2-1-3. Tray
+### 2-2. File 클래스
+
+"파일"을 나타내는 클래스이며 Entry 하위 클래스로 선언되어 있다. getName, getSize, printList(String)을 여기서 구현한다.
 
 ```
-public abstract class Tray extends Item {
-    protected List<Item> tray = new ArrayList<>();
+public class File extends Entry {
+    private String name;
+    private int size;
 
-    public Tray(String caption) {
-        super(caption);
+    public File(String name, int size) {
+        this.name = name;
+        this.size = size;
     }
-
-    public void add(Item item) {
-        tray.add(item);
+    @Override
+    public String getName() {
+        return name;
+    }
+    @Override
+    public int getSize() {
+        return size;
+    }
+    @Override
+    protected void printList(String prefix) {
+        System.out.println(prefix + "/" + this);
     }
 }
 ```
 
-### 2-2. 추상적인 공장 - Factory
+### 2-3. Directory 클래스
 
-class명을 통해 구체적인 공장의 인스턴스를 생성한다. getFactory를 통해 구체적인 공장 인스턴스를 생성하지만, 리턴값은 추상적인 공장(Factory) 임을 주의하자. 추상 부품들을 반환하는 createLink, createTray, createPage 같은 추상 메서드들은 메서드 이름과 시그니처만 여기서 확실히 정의하고, 제품의 구제적인 생성 및 부품 선정은 하위 클래스에게 일임한다.
+"디렉터리"를 표현하는 클래스로 File클래스와 같이 Entry 클래스의 하위 클래스로 선언되어 있다. directory는 디렉터리 엔트리를 보관해 두는 필드로, List <Entry> 형으로 선언되어 있다. Entry는 파일의 인스턴스인지, 디렉터리의 인스턴스인지 알 수 없지만 getSize() 메서드를 통해 일괄적으로 파일크기를 알 수 있다. 
 
 ```
-public abstract class Factory {
-    public static Factory getFactory(String classname) {
-        Factory factory = null;
-        try {
-            factory = (Factory)Class.forName(classname).getDeclaredConstructor().newInstance();
-        } catch (ClassNotFoundException e) {
-            System.out.println(classname + " 클래스가 발견되지 않았습니다.");
-        } catch (Exception e) {
-            e.printStackTrace();
+public class Directory extends Entry {
+    private String name;
+    private List<Entry> directory = new ArrayList<>();
+
+    public Directory(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getSize() {
+        int size = 0;
+        for (Entry entry: directory) {
+            size += entry.getSize();
         }
-        return factory;
-    }
-
-    public abstract Link createLink(String caption, String url);
-    public abstract Tray createTray(String caption);
-    public abstract Page createPage(String title, String author);
-}
-```
-
-### 2-3. 구체적인 공장 - ListFactory
-
-Factory 클래스의 createLink, createTray, createPage 추상 메스드들을 구체적으로 정의한다. 
-
-```
-public class ListFactory extends Factory {
-    @Override
-    public Link createLink(String caption, String url) {
-        return new ListLink(caption, url);
+        return size;
     }
 
     @Override
-    public Tray createTray(String caption) {
-        return new ListTray(caption);
-    }
-
-    @Override
-    public Page createPage(String title, String author) {
-        return new ListPage(title, author);
-    }
-}
-```
-
-### 2-4. 구체적인 부품 - ListLink, ListTray
-
-상위 클래스의 makeHTML 추상 메서드를 구현한다. 각 클래스의 요청에 맞는 HTML을 파싱 하여 String 형태로 리턴한다.
-
-#### 2-4-1. ListLink
-
-```
-public class ListLink extends Link {
-    public ListLink(String caption, String url) {
-        super(caption, url);
-    }
-
-    @Override
-    public String makeHTML() {
-        return "  <li><a href=\"" + url + "\">" + caption + "</a></li>\n";
-    }
-}
-```
-
-#### 2-4-2. ListTray
-
-```
-public class ListTray extends Tray {
-    public ListTray(String caption) {
-        super(caption);
-    }
-
-    @Override
-    public String makeHTML() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<li>\n");
-        sb.append(caption);
-        sb.append("\n<ul>\n");
-        for (Item item: tray) {
-            sb.append(item.makeHTML());
+    protected void printList(String prefix) {
+        System.out.println(prefix + "/" + this);
+        for (Entry entry: directory) {
+            entry.printList(prefix + "/" + name);
         }
-        sb.append("</ul>\n");
-        sb.append("</li>\n");
-        return sb.toString();
+    }
+
+    // 디렉터리 엔트리를 디렉터리에 추가한다
+    public Entry add(Entry entry) {
+        directory.add(entry);
+        return this;
     }
 }
 ```
 
-## 3\. Abstract Factory 패턴의 장단점
+다음과 같이 Directory / File 클래스(그릇과 내용물)를 같은 것으로 본다는 것이 Composite패턴의 특징이다.  add(Entry) 메서드를 통해 디렉터리 엔트리에 파일, 혹은 디렉터리를 추가하지만, 추가하는 entry가 파일인지 디렉터리인지를 세부적으로 체크하진 않는다. 또한 둘 다 Entry의 하위 클래스 인스턴스이기 때문에 getSize() 메서드를 안심하고 호출할 수 있다. Entry 하위에 새로운 클래스가 생성되어도 getSize()를 적절하게 구현할 것이기에 기존 클래스에서 이 부분을 수정할 필요가 없다.
 
-Abstract Factory 패턴에 Concrete Factory(구체적인 공장)을 추가하는 것은 간단하다. 어떤 클래스를 만들고 어떤 메서드를 구현해야 하는지가 명확하기 때문이다. 예제에서 ListFactory 외에 다른 Factory를 생성하려 한다면, Factory, Link, Tra 하위 클래스를 생성하고 각각 추상 메서드를 다시 구현하면 된다. 이 과정에서 Abstract Factory(추상 공장)에는 어떠한 수정도 가해지지 않는다. 여기서 오는 장점으로는 
+getSize() 메서드를 자세히 살펴보면, Entry가 Directory의 인스턴스일 때 entry.getSize()를 루프를 돌며 더하며, 그 안에 디렉터리가 있으면 다시 하위 디렉터리의 getSize() 메서드를 호출한다. 이런 식으로 재귀적으로 메서드가 호출되게 되는데, Composite 패턴의 재귀적 구조가 그대로 getSize 메서드의 재귀적 호출에 대응한다는 것을 볼 수 있다.
 
--   객체 생성코드의 확장성 보장
--   객체 간의 결합도 낮춤
--   구현체 클래스에 대한 의존성 감소
+## 3\. 결론
 
-하지만 공장을 추가하는 게 아닌 부품을 추가해야 한다면 어떨까? Factory 추상 팩토리에 Picture라는 부품을 추가해야 한다면, 이미 구현된 Concrete Factory 전체를 Picture에 대응하도록 수정해야 한다. 현재 예제에서는 createPicture라는 메서드를 모든 구체적인 공장에 추가해 주어야 한다. 이미 만들어진 공장이 많을수록 더 큰 작업이 될 것이다. 여기서 오는 단점으로는 
+어디에 적용할 수 있을까? 
 
--   복잡한 구조
--   유연성이 저하
--   추가적인 클래스 생성 필요
+"JAVA 언어로 배우는 디자인 패턴 입문 3편" 도서에서는 동작테스트 시 KeyboardTest, FileTest, NetworkTest 등을 모아 InputTest로 한 번에 다루거나 매크로 명령어를 재귀적 구조로 구현하여 매크로 명령의 매크로 명령을 만드는 것을 예제로 들고 있다. 일반적인 트리구조로 된 데이터 구조는 Composite 패턴에 해당하며, 재귀적 특징을 주의해서 사용한다면 그룹과 개인이 같은 특징을 가지거나 동시에 변경할 여지가 많은 부분에 효율적으로 적용 가능하다.
 
-## 4\. 결론 / 활용
-
-같은 유형의 다양한 제품, 부품을 생성할 때 굉장히 효율적인 패턴이다. 수정에는 닫혀있고 확장에는 열려있는 패턴으로 객체 간의 결합도를 낮춰주지만 추가적인 클래스 생성으로 유연성이 떨어지고 복잡한 구조가 될 우려가 있다. 확장 방향성에 대한 충분한 검토가 끝난 후 적용해야 효율을 볼 수 있다.
-
-
-블로그 : https://junhkang.tistory.com/61
+블로그 : https://junhkang.tistory.com/63
 
 참고 : JAVA 언어로 배우는 디자인 패턴 입문 3편

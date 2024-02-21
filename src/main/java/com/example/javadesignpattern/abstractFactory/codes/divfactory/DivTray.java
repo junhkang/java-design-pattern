@@ -1,8 +1,8 @@
-package com.example.javadesignpattern.AbstractFactory.codes.divfactory;
+package com.example.javadesignpattern.abstractFactory.codes.divfactory;
 
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Item;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Tray;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Item;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Tray;
 
 public class DivTray extends Tray {
     public DivTray(String caption) {

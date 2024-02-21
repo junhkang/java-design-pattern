@@ -1,4 +1,4 @@
-package com.example.javadesignpattern.Composite.codes;
+package com.example.javadesignpattern.composite.codes;
 
 public abstract class Entry {
     // 이름을 얻는다

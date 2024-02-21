@@ -1,7 +1,7 @@
-package com.example.javadesignpattern.AbstractFactory.codes.listfactory;
+package com.example.javadesignpattern.abstractFactory.codes.listfactory;
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Item;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Page;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Item;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Page;
 
 
 public class ListPage extends Page {

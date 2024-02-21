@@ -1,9 +1,9 @@
-package com.example.javadesignpattern.AbstractFactory.codes.listfactory;
+package com.example.javadesignpattern.abstractFactory.codes.listfactory;
 
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Factory;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Link;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Page;
-import com.example.javadesignpattern.AbstractFactory.codes.factory.Tray;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Factory;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Link;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Page;
+import com.example.javadesignpattern.abstractFactory.codes.factory.Tray;
 
 
 public class ListFactory extends Factory {
