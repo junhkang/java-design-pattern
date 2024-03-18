@@ -87,7 +87,7 @@ public class StringDisplay extends Display {
 }
 ```
 
-### 2-3. Border Class
+### 2-3. Border 클래스
 
 문자열을 표시하는 Display클래스의 하위 클래스로 정의되어 있다. 상속에 의해 내용물과 동일한 메서드를 가지게 된다. **getColumns, getRows, getRowText, show** 메서드를 그대로 상속받으며 인터페이스(API) 관점에서 보면 장식품(Boder)이 내용물(Display)을 동일시할 수 있다는 뜻이다.
 
@@ -103,7 +103,7 @@ public abstract class Border extends Display {
 
 Border는 Display 형의 display 필드를 가지고 있으면서 Border도 Display의 하위 클래스 이므로 display필드의 내용물은 또 다른 장식(Border클래스의 하위 클래스) 일 수도 있다. 그리고 그 장식 또한 display필드를 가지고 있을 수 있다.
 
-### 2-4. SideBorder Class
+### 2-4. SideBorder 클래스
 
 SideBorder클래스는 구체적인 장식의 일종으로 Border클래스의 하위 클래스이다. SideBorder 클래스는 문자열 좌우에 정해진 문자로 장식한다.
 
@@ -142,7 +142,7 @@ public class SideBorder extends Border {
 }
 ```
 
-### 2-5. FullBorder Class
+### 2-5. FullBorder 클래스
 
 FullBorder 클래스는 SideBorder 클래스와 동일하게 Border 하위 클래스이다. 예제에서는 SiderBorder이 좌우로만 문자를 장식했다면, 상하좌우를 모두 장식할 수 있으며, 장식 문자는 따로 지정할 수 없게 되어있다.
 
