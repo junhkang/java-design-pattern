@@ -11,12 +11,12 @@ Strategy는 전략이라는 뜻으로 적을 해치우는 작전, 게임을 이�
 <p align="center"><img src="./images/img.png"/></p>
 
 -   **Strategy(전략) -** 전략을 사용하기 위한 인터페이스를 결정 (예제의 Strategy 인터페이스)
--   **ConcreteStrategy(구체적인 전략) -** 인터페이스를 실제로 구현, 예제의 WinningStrategy, ProbStrategy 클래스 
+-   **ConcreteStrategy(구체적인 전략) -** 인터페이스를 실제로 구현, 예제의 WinningStrategy, ProbStrategy 클래스
 -   **Context(문맥) -** Strategy를 직접사용, ConcreteStrategy의 인스턴스를 가지고 있다가 필요에 따라 사용 (예제의 Player)
 
 ## 3\. 예제 (가위 바위 보 게임)
 
-책에서는 컴퓨터로 가위바위보 하는 프로그램을 예제로 들고 있다. 
+책에서는 컴퓨터로 가위바위보 하는 프로그램을 예제로 들고 있다.
 
 ### 3-1. 구조
 
@@ -94,7 +94,7 @@ public enum Hand {
 ```
 
 -   **Hand -** 가위/바위/보를 내는 손 자체를 나타내는 enum으로 각 행위를 enum 상수로 나타내고 getHand 메서드를 사용하여 Hand의 인스턴스를 얻을 수 있다. 예를 들어 가위 바위 보(0,1,2)를 각각 인수로 주면 값에 대응하는 인스턴스가 반환된다.
--   **isStrongerThan, isWeakerThan -**  Hand형인 두 손 객체의 강약을 비교한다.
+-   **isStrongerThan, isWeakerThan -** Hand형인 두 손 객체의 강약을 비교한다.
 -   **fight -** 실제 손의 강약 판정한다. 예제에서는 두 손의 합으로 승패를 구분하는데, 가위 바위 보 가 각각 0/1/2 이기에 합을 3으로 나눈 값을 기준으로 승패를 판별할 수 있다.
 
 ### 3-3. Strategy 인터페이스
@@ -111,7 +111,7 @@ public interface Strategy {
 -   nextHand - 다음에 낼 손을 얻기 위한 메서드
 -   study - 직전에 맨손으로 이겼는지 졌는지를 학습하는 메서드
 
-직전 nextHand 메서드 호출에서 이긴 경우 study(true), 지면 study(false)를 각각 호출한다. 이에 따라 Strategy 인터페이스를 구현하는 클래스는 자신의 내부상태를 변화시키고 다음에 낼 nextHand의 반환 값을 결정한다.
+직전 nextHand 메서드 호출에서 이긴 경우 study(true), 지면 study(false)를 각각 호출한다. 이에 따라 Strategy 인터페이스를 구현하는 클래스는 자신의 내부상태를 변화시키고 다음에 낼 nextHand의 반환 값을 결정한다.
 
 ### 3-4. WinningStrategy 클래스
 
@@ -331,4 +331,4 @@ Strategy 패턴은 알고리즘을 다른 부분과 의도적으로 분리한다
 
 * 참고 : JAVA 언어로 배우는 디자인 패턴 입문 3편
 
-* 블로그https://junhkang.tistory.com/87junhkang.tistory.com 
+* 블로그 : https://junhkang.tistory.com/87 
