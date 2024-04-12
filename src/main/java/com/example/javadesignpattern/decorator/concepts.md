@@ -20,7 +20,7 @@
 
 각 클래스의 역할
 
--   **Component -** 기능을 추가할 때 핵심이 되는 객체 (Display)
+-   **Component -**기능을 추가할 때 핵심이 되는 객체 (Display)
 -   **ConcreteComponent -** Component인터페이스를 구현하는 구현체 (StringDisplay)
 -   **Decorator -** Component와 동일한 인터페이스를 가지고 장식할 대상이 되는 Component도 포함(Border)
 -   **ConcreteDecorator -** 구체적인 Decorator (SideBorder, FullBorder)
