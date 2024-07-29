@@ -12,5 +12,7 @@
 
 [전략 (Strategy) 패턴](https://github.com/junhkang/java-design-pattern/tree/master/src/main/java/com/example/javadesignpattern/strategy)
 
+[빌더 (Builder) 패턴](https://github.com/junhkang/java-design-pattern/tree/master/src/main/java/com/example/javadesignpattern/builder)
+
 ### 블로그
 [junhkang의 개발 블로그](https://junhkang.tistory.com/)
